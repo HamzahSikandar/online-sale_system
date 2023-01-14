@@ -1,0 +1,48 @@
+{% extends 'store/main.html' %}
+{% block title %}Contact{% endblock title %}
+{% block contact %}active{% endblock contact %}
+{% block content %}
+<div class="container">
+{% comment %} Form Area {% endcomment %}
+<div class="container my-3">
+<h1 class='con'>Fill this Contact Form </h1>
+<form  method="post">
+{% csrf_token %}
+    <div class="mb-3">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" aria-describedby="name">
+    </div>
+    </div>
+
+<div class="mb-3">
+    <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  </div>
+
+<div class="mb-3">
+  <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <input type="phone" name="phone" class="form-control" id="phone" aria-describedby="emailHelp">
+  </div>
+  </div>
+
+<div class="mb-3">
+  <div class="form-group">
+    <label for="content">Describe Your Issue:</label>
+    <textarea name="content" id="content" class="form-control" cols="30" rows="5"></textarea>
+  </div>
+  </div>
+{% if user.is_authenticated %}
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+{% else %}
+<button type="submit" disabled class="btn btn-primary">Login to Contact</button>
+{% endif %}
+</form>
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends 'store/main.html' %}
+{% block title %}Search Page{% endblock title %}
+{% block blog %}active{% endblock blog %}active
+{% block content %}
+
+<div class="container my-3">
+  <h1>Search Results</h1>
+  {% if product|safe|length < 1 %} <p>No Search Found</p>
+    <p>There are no Result For: {{ query }} </p>
+    <p>Please Check Your Spelling or try differnt keywords </p>
+    {% endif %}
+    <div class="row">
+    {% for i in product %}
+    <div class="col-lg-4 my-4">
+      <img src="{{i.imageURL}}" class="img-thumbnail" alt="No Picture is Avalable" style="width:100%; height:320px;">
+      <div class="box-element product">
+        <h6><strong>{{i.name}}</strong></h6>
+        <hr>
+        <button data-product='{{i.id}}' data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to
+          Cart</button>
+        <a href="#" class="btn btn-outline-success"> View</a>
+        <h4 style="display:inline-block; float:right;">${{i.price}}</h4>
+      </div>
+
+
+
+
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}

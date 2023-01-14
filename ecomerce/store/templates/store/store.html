@@ -1,0 +1,35 @@
+{% extends 'store/main.html' %}
+{% block title %}Store{% endblock title %}
+{% load static %}
+
+        
+
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% block content %}
+<div class="container">
+<br><br>
+<div class="row">
+    {% for i in product %}
+    <div class="col-lg-4 col-md-6 col-sm-12 my-4">
+                <img src="{{i.imageURL}}" class="img-thumbnail" alt="No Picture is Avalable" style="width:80%; height:300px;">
+        <div class="box-element product" style="width: 80%;">
+            <h6><strong>{{i.name}}</strong></h6>
+            <hr>
+
+            {% if user.is_authenticated %}
+            <button data-product='{{i.id}}' data-action="add" class="btn btn-outline-success add-btn update-cart">Add to Cart</button>
+            {% else %}
+            <button data-product='{{i.id}}' data-action="add" class="btn btn-outline-secondary add-btn update-cart" disabled>Login To Add to Cart</button>
+            {% endif %}
+            {% comment %} <a href="#" class="btn btn-outline-success"> View</a> {% endcomment %}
+            <h4 style="display:inline-block; float:right;">${{i.price}}</h4>
+        </div>
+        
+    
+    
+    
+    </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block contact %}active{% endblock contact %}
+{% block content %}
+{% comment %} Crousal Here {% endcomment %}
+
+
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" >
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/static/images/slider/sliderpic-1.jpg" class="d-block w-100" style="width: 100vh; height: 70vh;" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="/static/images/slider/slide-2.jpg" class="d-block w-100"  style="width: 100vh; height: 70vh;" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="/static/images/slider/slider-3.jpg" class="d-block w-100"  style="width: 100vh; height: 70vh;" alt="...">
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container">   
+  <div class="row my-5">
+  <div class="col-lg-4 col-md-6 col-sm-12" data-aos="fade-right" data-aos-duration="1500">
+    <a class="text-decoration-none" href="{% url 'store' %}">
+    <div class="card" style="width:15rem; ">
+    <div class="text-center">
+      <img src="/static/images/storeorg.jpg" class="card-img-top mt-3" style="width:10rem; height:10rem;" alt="...">
+    </div>
+      <div class="card-body text-center">
+        <h3 class="card-title mt-2 fw-bold text-dark"  >Store</h3>
+        
+      </div>
+    </div>
+    </a>
+  </div>
+
+
+  <div class="col-lg-4 col-md-6 col-sm-12" data-aos="fade-right" data-aos-duration="1500">
+    <a class="text-decoration-none" href="{% url 'cart' %}">
+    <div class="card" style="width:15rem; ">
+    <div class="text-center">
+      <img src="/static/images/cart.jpg" class="card-img-top mt-3" style="width:10rem; height:10rem;" alt="...">
+    </div>
+      <div class="card-body text-center">
+        <h3 class="card-title mt-2 fw-bold text-dark"  >Cart</h3>
+        
+      </div>
+    </div>
+    </a>
+  </div>
+
+
+
+
+
+  <div class="col-lg-4 col-md-6 col-sm-12" data-aos="fade-left" data-aos-duration="1500">
+    <a class="text-decoration-none" href="{% url 'contact' %}">
+    <div class="card" style="width:15rem; ">
+    <div class="text-center">
+      <img src="/static/images/contactorg.jpg" class="card-img-top mt-3" style="width:10rem; height:10rem;" alt="...">
+    </div>
+      <div class="card-body text-center">
+        <h3 class="card-title mt-2 fw-bold text-dark"  >Contact Us</h3>
+        
+      </div>
+    </div>
+    </a>
+  </div>
+  </div>
+
+
+
+<!-- Crousal here -->
+
+
+<h1>Popular Products</h1>
+
+<div class="row">
+    {% for i in product %}
+    <div class="col-lg-4 col-md-6 col-sm-12 my-4" >
+
+    
+
+
+        
+        <img src="{{i.imageURL}}" class="img-thumbnail" alt="No Picture is Avalable" style="width:80%; height:320px;">
+        <div class="box-element product" style="width: 80%;">
+            <h6><strong>{{i.name}}</strong></h6>
+            <hr>
+
+            {% if user.is_authenticated %}
+            <button data-product='{{i.id}}' data-action="add" class="btn btn-outline-success add-btn update-cart">Add to Cart</button>
+            {% else %}
+            <button data-product='{{i.id}}' data-action="add" class="btn btn-outline-secondary add-btn update-cart" disabled>Login To Add to Cart</button>
+            {% endif %}
+            {% comment %} <a href="#" class="btn btn-outline-success"> View</a> {% endcomment %}
+            <h4 style="display:inline-block; float:right;">${{i.price}}</h4>
+        </div>
+        
+    
+    
+    
+    </div>
+    {% endfor %}
+    
+</div>
+<br><br>
+
+</div>
+
+
+{% endblock content %}
